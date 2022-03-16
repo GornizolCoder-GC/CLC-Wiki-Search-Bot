@@ -1,0 +1,26 @@
+Xatolik :
+
+  .\venv\Scripts\activate : File C:\Users\user\Desktop\wiki-bot\venv\Scripts\Activate.ps1 cannot be loaded because running scripts is disabled on this system. For      
+  more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+  + .\venv\Scripts\activate
+
+  + ~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+
+Agarda shunaqa ko`rinishdagi xatolik chiqsa  Windows Powershell (Admin) orqali quyidagi komandalar orqali to`g`irlasangiz bo`ladi.
+-  Windows Powershell (Admin) dasturini oching:
+Start by pressing WINKEY + X button combo or right-click on the Start button and click on Windows Powershell (Admin) or search for Powershell in the search box, right click on it and select Run as Administrator
+
+- quyidagi komandani kiriting:
+Get-ExecutionPolicy -List
+
+-LocalMachine Undefined yoki Restricted bo`lib ko`rinadi. Buni tog`irlash uchun quyidagi komandani yozing:
+set-executionpolicy unrestricted
+
+-Va powershell sizdan ruxsat so`raydi. Bunda y|Y deb bosing.
+
+-Keyin yana qayta tekshirib ko`ring:
+Get-ExecutionPolicy -List
+
+-Agar shunda ham bu xatolik qaytarilsa ushbu komandani yozing:
+set-executionpolicy unrestricted -force
