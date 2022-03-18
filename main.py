@@ -7,7 +7,9 @@ from telegram.ext.filters import Filters
 import requests
 
 import pprint as pp
-
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 updater = Updater(token=setting.TELEGRAM_TOKEN)
 
 # bot = Bot(token="2063139219:AAFCI6h2_AQM8-aX4DvHp8iNWBB--_Xejuw")
@@ -21,7 +23,7 @@ updater = Updater(token=setting.TELEGRAM_TOKEN)
 # print(updates[0])
 
 def start(update: Update, context: CallbackContext):
-
+    logging.info('boshlandi!')
     update.message.\
         reply_text('assalomu alaykum. Vikipedia botga xush kelibsiz! '
                    'Sizga qiziq bo‘lgan mavzuda maʼlumot olmoq uchun '
@@ -34,6 +36,7 @@ def search(update: Update, context: CallbackContext):
     URL = "https://en.wikipedia.org/w/api.php"
     args = context.args
 
+    logging.info('Argumentni tekshirish')
     if len(args) == 0:
         update.message.reply_text("Izlayotgan narsa qolib ketgan! Misol uchun quyidagicha kiriting:  \n/search Amir Temur")
     else:
@@ -45,10 +48,13 @@ def search(update: Update, context: CallbackContext):
             'search':search_tag
         }
 
+        logging.info("Wikipedia API ga so`rov junatish.")
         response = requests.get(url=URL, params=PARAMS)
         link = response.json()[3]
         test = response.json()
         text = ""
+
+        logging.info('send_message')
         if len(link):
             # pp.pprint(link)
             pp.pprint(test)
